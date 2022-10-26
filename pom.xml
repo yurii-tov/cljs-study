@@ -44,6 +44,11 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
+                <configuration>
+                    <additionalClasspathElements>
+                        <additionalClasspathElement>src\main\cljs</additionalClasspathElement>
+                    </additionalClasspathElements>
+                </configuration>
                 <executions>
                     <execution>
                         <id>cljs-compile</id>
@@ -63,14 +68,6 @@
                 </executions>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>src\main\cljs</directory>
-            </resource>
-            <resource>
-                <directory>src\main\resources</directory>
-            </resource>
-        </resources>
     </build>
     <profiles>
         <profile>
