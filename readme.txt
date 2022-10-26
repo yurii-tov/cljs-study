@@ -1,1 +1,1 @@
-Enough-to-be-dangerous clojurescript example
+Enough-to-be-dangerous maven-based clojurescript example
