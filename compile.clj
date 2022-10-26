@@ -8,9 +8,9 @@
 
 (defn compile-cljs [ns]
   (let [output-html (str output-dir "/" (str ns ".html"))
-        options (concat *command-line-args*
-                        ["--output-dir" output-dir
+        options (concat ["--output-dir" output-dir
                          "--output-to" (str output-dir "/" ns ".js")
+                         "--optimizations" (System/getProperty "cljs.compiler.optimizations")
                          "-c" ns])]
     (println "Compiling using options:" options "->" output-html)
     (apply main/-main options)
@@ -21,4 +21,5 @@
           :encoding "utf-8")))
 
 
-(compile-cljs "example.core")
+(doseq [ns (cstr/split (System/getProperty "cljs.compiler.src") #",")]
+  (compile-cljs ns))

@@ -8,7 +8,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <cljs.compiler.optimizations>whitespace</cljs.compiler.optimizations>
+        <cljs.compiler.optimizations>advanced</cljs.compiler.optimizations>
+        <cljs.compiler.src>example.core</cljs.compiler.src>
     </properties>
     <repositories>
         <repository>
@@ -78,10 +79,18 @@
                         </goals>
                         <configuration>
                             <mainClass>clojure.main</mainClass>
+                            <systemProperties>
+                                <systemProperty>
+                                    <key>cljs.compiler.optimizations</key>
+                                    <value>${cljs.compiler.optimizations}</value>
+                                </systemProperty>
+                                <systemProperty>
+                                    <key>cljs.compiler.src</key>
+                                    <value>${cljs.compiler.src}</value>
+                                </systemProperty>
+                            </systemProperties>
                             <arguments>
                                 <argument>compile.clj</argument>
-                                <argument>--optimizations</argument>
-                                <argument>${cljs.compiler.optimizations}</argument>
                             </arguments>
                         </configuration>
                     </execution>
