@@ -3,7 +3,7 @@
          '[clojure.java.io :as io])
 
 
-(def output-dir "out")
+(def output-dir (System/getProperty "cljs.compiler.outputDir"))
 
 
 (defn compile-cljs [ns]
