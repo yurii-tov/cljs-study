@@ -9,7 +9,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <cljs.compiler.optimizations>advanced</cljs.compiler.optimizations>
+        <cljs.compiler.optimizations>whitespace</cljs.compiler.optimizations>
         <cljs.compiler.src>example.core</cljs.compiler.src>
         <cljs.compiler.outputDir>out</cljs.compiler.outputDir>
         <cljs.repl.port>8888</cljs.repl.port>
