@@ -9,8 +9,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <cljs.compiler.optimizations>whitespace</cljs.compiler.optimizations>
-        <cljs.compiler.src>example.core</cljs.compiler.src>
+        <cljs.compiler.config>compiler.edn</cljs.compiler.config>
+        <cljs.compiler.args>--compile</cljs.compiler.args>
         <cljs.repl.port>8888</cljs.repl.port>
     </properties>
     <repositories>
@@ -51,7 +51,6 @@
                 <configuration>
                     <additionalClasspathElements>
                         <additionalClasspathElement>src\main\cljs</additionalClasspathElement>
-                        <additionalClasspathElement>src\main\resources</additionalClasspathElement>
                     </additionalClasspathElements>
                 </configuration>
                 <executions>
@@ -63,23 +62,7 @@
                         </goals>
                         <configuration>
                             <mainClass>clojure.main</mainClass>
-                            <systemProperties>
-                                <systemProperty>
-                                    <key>cljs.compiler.optimizations</key>
-                                    <value>${cljs.compiler.optimizations}</value>
-                                </systemProperty>
-                                <systemProperty>
-                                    <key>cljs.compiler.src</key>
-                                    <value>${cljs.compiler.src}</value>
-                                </systemProperty>
-                                <systemProperty>
-                                    <key>cljs.compiler.outputDir</key>
-                                    <value>${cljs.compiler.outputDir}</value>
-                                </systemProperty>
-                            </systemProperties>
-                            <arguments>
-                                <argument>compile.clj</argument>
-                            </arguments>
+                            <commandlineArgs>-m cljs.main --compile-opts ${cljs.compiler.config} ${cljs.compiler.args}</commandlineArgs>
                         </configuration>
                     </execution>
                 </executions>

@@ -1,0 +1,4 @@
+{:main example.core
+ :output-dir "target"
+ :optimizations :whitespace
+ :verbose true}
