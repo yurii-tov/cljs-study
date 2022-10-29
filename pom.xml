@@ -111,7 +111,6 @@
         <profile>
             <id>repl</id>
             <properties>
-                <cljs.repl.port>8888</cljs.repl.port>
                 <cljs.compiler.outputDir>out</cljs.compiler.outputDir>
             </properties>
             <dependencies>
