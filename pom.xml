@@ -11,7 +11,6 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <cljs.compiler.optimizations>whitespace</cljs.compiler.optimizations>
         <cljs.compiler.src>example.core</cljs.compiler.src>
-        <cljs.compiler.outputDir>target</cljs.compiler.outputDir>
         <cljs.repl.port>8888</cljs.repl.port>
     </properties>
     <repositories>
@@ -45,26 +44,6 @@
     </dependencies>
     <build>
         <plugins>
-            <plugin>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>2.5</version>
-                <executions>
-                    <execution>
-                        <id>default-clean</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>clean</goal>
-                        </goals>
-                        <configuration>
-                            <filesets>
-                                <fileset>
-                                    <directory>${cljs.compiler.outputDir}</directory>
-                                </fileset>
-                            </filesets>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
@@ -110,9 +89,6 @@
     <profiles>
         <profile>
             <id>repl</id>
-            <properties>
-                <cljs.compiler.outputDir>out</cljs.compiler.outputDir>
-            </properties>
             <dependencies>
                 <dependency>
                     <groupId>nrepl</groupId>
@@ -131,6 +107,7 @@
                 </dependency>
             </dependencies>
             <build>
+                <directory>out</directory>
                 <plugins>
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
