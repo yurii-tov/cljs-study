@@ -11,7 +11,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <cljs.compiler.optimizations>whitespace</cljs.compiler.optimizations>
         <cljs.compiler.src>example.core</cljs.compiler.src>
-        <cljs.compiler.outputDir>out</cljs.compiler.outputDir>
+        <cljs.compiler.outputDir>target</cljs.compiler.outputDir>
         <cljs.repl.port>8888</cljs.repl.port>
     </properties>
     <repositories>
@@ -41,21 +41,6 @@
             <groupId>reagent</groupId>
             <artifactId>reagent</artifactId>
             <version>0.10.0</version>
-        </dependency>
-        <dependency>
-            <groupId>nrepl</groupId>
-            <artifactId>nrepl</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>cider</groupId>
-            <artifactId>piggieback</artifactId>
-            <version>0.5.3</version>
-        </dependency>
-        <dependency>
-            <groupId>cider</groupId>
-            <artifactId>cider-nrepl</artifactId>
-            <version>0.26.0</version>
         </dependency>
     </dependencies>
     <build>
@@ -118,11 +103,39 @@
                             </arguments>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>cljs-repl</id>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <id>repl</id>
+            <properties>
+                <cljs.repl.port>8888</cljs.repl.port>
+                <cljs.compiler.outputDir>out</cljs.compiler.outputDir>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>nrepl</groupId>
+                    <artifactId>nrepl</artifactId>
+                    <version>1.0.0</version>
+                </dependency>
+                <dependency>
+                    <groupId>cider</groupId>
+                    <artifactId>piggieback</artifactId>
+                    <version>0.5.3</version>
+                </dependency>
+                <dependency>
+                    <groupId>cider</groupId>
+                    <artifactId>cider-nrepl</artifactId>
+                    <version>0.26.0</version>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
                         <configuration>
                             <mainClass>clojure.main</mainClass>
                             <arguments>
@@ -134,9 +147,9 @@
                                 <argument>[cider.nrepl/cider-middleware, cider.piggieback/wrap-cljs-repl]</argument>
                             </arguments>
                         </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
