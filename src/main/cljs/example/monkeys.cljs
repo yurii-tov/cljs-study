@@ -21,7 +21,7 @@
                            cycle
                            (take 5)
                            (map vector (range)))]
-            [:tr {:key i} (map (fn [x] [:td x]) r)])])
+            [:tr {:key i} (map (fn [i x] [:td {:key i} x]) (range) r)])])
 
 
 (defn render-monkeys []
