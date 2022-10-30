@@ -6,7 +6,7 @@
 (set! js/document.title "38 🐵")
 
 
-(def interval (r/atom 0.5))
+(def interval (r/atom 1))
 
 
 (def timeout (atom nil))
@@ -25,7 +25,7 @@
 
 
 (defn render-monkeys []
-  (reset! timeout (js/setTimeout render-monkeys (* 1000 @interval)))
+  (reset! timeout (js/setTimeout render-monkeys (/ 1000.0 @interval)))
   (dom/render [monkeys] (js/document.getElementById "monkeys")))
 
 
