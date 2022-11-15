@@ -3,9 +3,6 @@
             [reagent.core :as r]))
 
 
-(set! js/document.title "38 🐵")
-
-
 (defn rand-monkey []
   (rand-nth ["🙈" "🙉" "🙊"]))
 
@@ -21,7 +18,7 @@
   [:table
    [:tbody
     (->> (map (comp second list) @monkeys (range))
-         (mapcat (fn [i] (list [:td (@monkeys i)] [:td " "])))
+         (mapcat (fn [i] (list [:td.monkey (@monkeys i)] [:td " "])))
          (partition 15)
          (map (fn [i x] (vec (list* :tr {:key i} x))) (range))
          doall)]])
@@ -35,8 +32,11 @@
       (f))))
 
 
+(set! js/document.title "38 🐵")
+
+
 (dom/render [:div
-             [:h1 "The 38 Monkeys🐒"]
+             [:h1#title "The 38 Monkeys🐒"]
              [:p {:style {:font-size "0.5em"}} "Арт-объект"]
              [:p [monkeys-table]]]
             (js/document.getElementById "app"))
